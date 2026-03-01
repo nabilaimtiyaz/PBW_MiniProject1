@@ -1,4 +1,4 @@
-# Mini Project 1 Praktikum PBW
+# Mini Project 1 Praktikum Pemrograman Berbasis Web
 Nama  : Nabila Imtiyaz Agustin
 
 NIM   : 2409116011
