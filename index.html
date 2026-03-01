@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio LaLaaa</title>
+
+    <!-- ==== Google Font === -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- ==== Bootstrap === -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+</head>
+<body>
+
+<div id="app">
+
+<!-- ================= Navbar ================= -->
+
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+    <div class="container">
+        <a class="navbar-brand brand-text" href="#">Lalaa</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Me</a></li>
+                <li class="nav-item"><a class="nav-link" href="#certificates">Certificates</a></li>
+                <li class="nav-item"><a class="nav-link" href="#journal">Journal</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- ================= Hero ================= -->
+
+<section id="home" class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+                <h1 class="hero-title">
+                    {{ headline }}
+                </h1>
+                <p class="hero-subtitle">
+                    {{ tagline }}
+                </p>
+                <a href="#certificates" class="btn-hero">
+                    Explore My Work
+                </a>
+            </div>
+
+            <div class="col-md-6 text-center">
+                <div class="image-wrapper position-relative">
+
+                    <span class="arrow left" @click="prevImage">
+                        &lt;
+                    </span>
+
+                    <img 
+                        :src="currentImage" 
+                        class="hero-img clickable-photo"
+                    >
+
+                    <span class="arrow right" @click="nextImage">
+                        &gt;
+                    </span>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= About Me ================= -->
+
+<section id="about" class="section-soft">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">
+            About Me
+        </h2>
+
+        <!-- === paragraf === -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-10 col-xl-9 text-center">
+                <p class="about-desc">
+                    Hi Precious People! Ini Lalaa.  
+                    Aku adalah mahasiswi di Universitas Mulawarman program studi Sistem Informasi angkatan 2024 
+                    sekaligus seorang atlet anggar yang aktif berkompetisi dan berorganisasi di Samarinda.  
+
+                    Menjalani kehidupan sebagai student-athlete mengajarkanku tentang disiplin, tanggung jawab, 
+                    manajemen waktu, dan bagaimana tetap konsisten meskipun menghadapi tekanan. 
+                    Disela kesibukan ku, aku selalu menyempatkan untuk menjalani hobi ku. Contohnya seperti Journaling, Makeup, 
+                    baca buku, dan nonton film. 
+                </p>
+                <div class="about-divider"></div>
+            </div>
+        </div>
+
+        <!-- === cards === -->
+        <div class="row g-4">
+
+            <!-- === skills cards === -->
+            <div class="col-md-6">
+                <div class="about-big-card">
+                    <h4 class="card-title mb-4">My Skills</h4>
+
+                    <div v-for="skill in skills" class="mb-3">
+                        <label class="skill-label">{{ skill.name }}</label>
+                        <div class="progress custom-progress">
+                            <div class="progress-bar"
+                                :style="{ width: skill.level + '%' }">
+                                {{ skill.level }}%
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- === experience cards === -->
+            <div class="col-md-6">
+                <div class="about-big-card">
+                    <h4 class="card-title mb-4">Experience</h4>
+
+                    <ul class="experience-list">
+                        <li v-for="exp in experiences">
+                            {{ exp }}
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= Certificates ================= -->
+
+<section id="certificates" class="section-light py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-5">Certificates</h2>
+
+        <!-- ==== Competition === -->
+        <div class="divider-title">
+            <span>Competition</span>
+        </div>
+
+        <div class="row mb-5">
+            <div v-for="(cert, index) in competitionCerts" 
+                class="col-md-4 mb-4">
+
+                <div class="cert-card-new">
+                    <h5 class="cert-title">{{ cert.title }}</h5>
+                    <p class="cert-short">{{ cert.shortDesc }}</p>
+                    <button class="btn-show" @click="openModal(cert)">
+                        Show
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==== Leadership & Events === -->
+        <div class="divider-title">
+            <span>Leadership & Events</span>
+        </div>
+
+        <div class="row">
+            <div v-for="(cert, index) in leadershipCerts" 
+                class="col-md-4 mb-4">
+
+                <div class="cert-card-new">
+                    <h5 class="cert-title">{{ cert.title }}</h5>
+                    <p class="cert-short">{{ cert.shortDesc }}</p>
+                    <button class="btn-show" @click="openModal(cert)">
+                    Show
+                </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= Journal ================= -->
+
+<section id="journal" class="section-soft journal-section">
+    <div class="container">
+
+        <h2 class="section-title text-center mb-4">My Journal</h2>
+
+        <p class="text-center journal-desc">
+            Ini adalah beberapa hasil journaling aku. Semoga bisa menginspirasi yaa! Much loveee 
+        </p>
+
+        <div class="about-divider"></div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4" v-for="(img, index) in journals">
+                <div class="journal-card">
+                    <img :src="img" class="journal-img">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= Modal ================= -->
+ 
+<div class="modal fade" id="certModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content custom-modal position-relative">
+
+        <!-- ==== tombol X === -->
+        <button type="button"
+                class="custom-close"
+                data-bs-dismiss="modal">
+            &times;
+        </button>
+
+        <div class="modal-body text-center">
+            <img :src="selectedCert.image" class="modal-img mb-3">
+
+            <h5>{{ selectedCert.title }}</h5>
+            <p class="modal-desc">
+            {{ selectedCert.detailDesc }}
+            </p>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- ================= Vue ================= -->
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<script>
+const { createApp } = Vue
+
+createApp({
+    data() {
+        return {
+            headline: "Nabila Imtiyaz Agustin",
+            tagline: "An Information Systems student at Mulawarman University and a dedicated fencing athlete.",
+
+            currentIndex: 0,
+
+            personas: [
+                { image: "images/profil/foto3.jpg" },
+                { image: "images/profil/foto2.jpg" },
+                { image: "images/profil/foto1.jpg" },
+                { image: "images/profil/foto4.jpg" }
+            ],
+
+            skills: [
+                { name: "Public Speaking 🎤", level: 70 },
+                { name: "Makeup 💄", level: 85 },
+                { name: "Singing 🎶", level: 75 },
+                { name: "Cooking 🍳", level: 30 },
+                { name: "English 🌍", level: 90 }
+            ],
+
+            experiences: [
+                "Master of Ceremony Rapat Kerja Provinsi Anggar Kaltim 2025",
+                "Master of Ceremony Talkshow Insevent 2025",
+                "Master of Ceremony Lomba Anggar Kaltim Open 2024",
+                "Sekretaris UKM Anggar Universitas Mulawarman",
+                "Sekretaris-Bendahara Inforsa Independence Day 2025",
+                "Wakil Bendahara Intellecta Fencing Club"
+            ],
+
+            certificates: [
+                {
+                    title: "Kaltim Open Anggar 2021",
+                    shortDesc: "Women’s Foil Cadet",
+                    image: "images/sertifikat/competition/kaltim2021.jpg",
+                    detailDesc: "Ini pertandingan kedua yang aku ikuti setelah berlatih anggar selama 2 tahun. Disini aku mendapat juara 2  dan bertemu lawan yang sangat hebat dari Kalimantan Selatan di Final. Yang mana disini aku banyak belajar teknik baru dalam bertanding dan bertekad untuk berlatih lebih giat lagi untuk berdiri di podium tertinggi.",
+                    category: "competition"
+                },
+                {
+                    title: "Porprov Anggar 2022",
+                    shortDesc: "Women’s Foil Team",
+                    image: "images/sertifikat/competition/porprov2022.jpg",
+                    detailDesc: "This tournament strengthened my competitive mindset and improved my tactical performance.",
+                    category: "competition"
+                },
+                {
+                    title: "Kaltim Open Anggar 2019",
+                    shortDesc: "Women’s Sabre Cadet",
+                    image: "images/sertifikat/competition/kaltim2019.jpg",
+                    detailDesc: "Ini kompetisi anggar pertama yang aku ikutin di tahun pertama aku berlatih anggar. I was sooo excited and had so much fun!!",
+                    category: "competition"
+                },
+                
+
+                {
+                    title: "Master of Ceremony",
+                    shortDesc: "Talkshow Insevent 2025",
+                    image: "images/sertifikat/leadership/sertif_mc.jpg",
+                    detailDesc: "It wasn’t my first time as a Master of Ceremony, but this event taught me so many new things and valuable lessons. I’m truly grateful for my friends who were always there for me during the tough times. ",
+                    category: "leadership"
+                },
+                {
+                    title: "Sekretaris-Bendahara",
+                    shortDesc: "Inforsa Independence Day 2025",
+                    image: "images/sertifikat/leadership/sertifsekben.jpg",
+                    detailDesc: "Sertifikat yang aku terima setelah pertama kali mengambil tanggung jawab sebagai sekretaris dan bendahara dalam salah satu kepanitiaan PSD Inforsa 2025. Banyak tantangan dan hal baru dalam menjalani posisi ini, but I survived and learned so many things!!",
+                    category: "leadership"
+                },
+                {
+                    title: "Anggota INFORSA 2025",
+                    shortDesc: "Kabinet Cakrawira",
+                    image: "images/sertifikat/leadership/sertifinforsa.png",
+                    detailDesc: "Ini adalah sertifikat yang aku dapat setelah menjadi anggota INFORSA tepatnya di departemen PSD. Receiving this certificate made me so happy after everything I've been through. I would like to express my sincere gratitude to everyone who worked hard and collaborated throughout the management period.",
+                    category: "leadership"
+                },
+                {
+                    title: "Peserta Study Club Soft Skill",
+                    shortDesc: "SC RPPM 2024",
+                    image: "images/sertifikat/leadership/sertifsoftskill.png",
+                    detailDesc: "This was the first study club I joined during my first semester in college, and it greatly helped build my confidence. I started to share my answers and opinions whenever I had the chance, and I realized how much my confidence had grown after participating in this study club. Thank you so much to the speaker. ",
+                    category: "leadership"
+                },
+                {
+                    title: "Anggota Divisi Acara",
+                    shortDesc: "INFORSA TECH 2025",
+                    image: "images/sertifikat/leadership/sertifitech.png",
+                    detailDesc: "I took part in Inforsa Tech as a member of the event division, where I was responsible for reaching out to sponsors. This experience allowed me to learn many new things and gain valuable insights. I’m truly grateful to everyone who worked hard and collaborated to make this event successful.",
+                    category: "leadership"
+                },
+                {
+                    title: "Peserta Kuliah Umum 2024",
+                    shortDesc: "Sistem Informasi",
+                    image: "images/sertifikat/leadership/sertifkuliahumum.jpg",
+                    detailDesc: "This was the first public lecture I attended during my first semester in college. It was a very exciting and meaningful experience, as I gained a lot of new knowledge that I had never learned before.",
+                    category: "leadership"
+                }
+            ],
+
+            journals: [
+                "images/journal/jurnal1.jpg",
+                "images/journal/jurnal2.jpg",
+                "images/journal/jurnal3.jpg",
+            ],
+
+            selectedCert: {}
+        }
+    },
+
+    computed: {
+        currentImage() {
+            return this.personas[this.currentIndex].image
+        },
+        competitionCerts() {
+            return this.certificates.filter(cert => cert.category === "competition")
+        },
+        leadershipCerts() {
+            return this.certificates.filter(cert => cert.category === "leadership")
+        }
+    },
+
+    methods: {
+        prevImage() {
+            this.currentIndex =
+                (this.currentIndex - 1 + this.personas.length) % this.personas.length
+        },
+
+        nextImage() {
+            this.currentIndex =
+                (this.currentIndex + 1) % this.personas.length
+        },
+
+        openModal(cert) {
+            this.selectedCert = cert
+            const modal = new bootstrap.Modal(document.getElementById('certModal'))
+            modal.show()
+        }
+    }
+}).mount('#app')
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- ================= Footer ================= -->
+<footer class="custom-footer">
+    <div class="container text-center">
+
+        <h5 class="footer-name">Until Next Time 🌷</h5>
+
+        <div class="social-info mt-4">
+            <div class="social-item">
+                <i class="bi bi-instagram"></i>
+                <span>@nblimtyz</span>
+            </div>
+
+            <div class="social-item">
+                <i class="bi bi-tiktok"></i>
+                <span>@nblimtyz25</span>
+            </div>
+
+            <div class="social-item">
+                <i class="bi bi-envelope-fill"></i>
+                <span>nabilaimtiyaz25@gmail.com</span>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

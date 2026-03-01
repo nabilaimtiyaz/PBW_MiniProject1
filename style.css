@@ -1,0 +1,461 @@
+:root {
+    --champagne: #F7E7CE;
+    --sand-gold: #D4AF37;
+    --burgundy: #7A1C2E;
+    --dark-maroon: #4A0404;
+    --deep-wine: #5B0F1A;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--champagne);
+    scroll-behavior: smooth;
+}
+
+.section-soft {
+    padding: 80px 0;
+}
+
+.section-light {
+    background-color: #F3E3D3;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #5c4033;
+}
+
+
+/* ================= Navbar ================= */
+
+.custom-navbar {
+    background-color: var(--champagne);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.brand-text {
+    color: var(--dark-maroon);
+}
+
+.navbar .nav-link {
+    color: var(--dark-maroon) !important;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    color: var(--burgundy) !important;
+}
+
+
+/* ================= Hero ================= */
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background: radial-gradient(
+        circle at 30% 50%,
+        var(--burgundy),
+        var(--dark-maroon)
+    );
+    position: relative;
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: var(--sand-gold);
+    opacity: 0.4;
+}
+
+.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: var(--champagne);
+    margin-bottom: 30px;
+}
+
+.hero-subtitle {
+    color: rgba(247, 231, 206, 0.8);
+}
+
+.image-wrapper {
+    background-color: var(--champagne);
+    border: 1px solid var(--sand-gold);
+    border-radius: 40px;
+    padding: 20px;
+    display: inline-block;
+    margin-top: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 25px;
+}
+
+.clickable-photo {
+    cursor: pointer;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.clickable-photo:hover {
+    transform: scale(1.03);
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    color: var(--dark-maroon);
+    background-color: var(--champagne);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.arrow:hover {
+    background-color: var(--sand-gold);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.arrow.left {
+    left: -20px;
+}
+
+.arrow.right {
+    right: -20px;
+}
+
+
+/* ================= Buttons ================= */
+
+.btn-hero {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 8px 20px;         
+    border-radius: 20px;       
+    border: 1px solid var(--sand-gold);
+    color: var(--sand-gold);
+    text-decoration: none;
+    font-size: 14px;            
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: var(--champagne);
+    color: var(--dark-maroon);
+    transform: translateY(-2px);
+}
+
+.btn-show {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--sand-gold);
+    background: transparent;
+    color: var(--sand-gold);
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.btn-show:hover {
+    background: var(--champagne);
+    color: var(--dark-maroon);
+    transform: translateY(-2px);
+}
+
+
+/* ================= About Me ================= */
+
+#about {
+    background: radial-gradient(
+        circle at 20% 30%,
+        rgba(122,28,46,0.05),
+        transparent 40%
+    );
+}
+
+.about-desc {
+    font-size: 17px;
+    line-height: 1.8;
+    opacity: 0.85;
+}
+
+.about-divider {
+    width: 40%;
+    max-width: 500px;
+    height: 2px;
+    margin: 40px auto 70px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--sand-gold),
+        transparent
+    );
+    border-radius: 2px;
+}
+
+
+/* ================= About Cards ================= */
+
+.about-big-card {
+    background: linear-gradient(145deg, #ffffff, #f9f3ec);
+    padding: 40px;
+    border-radius: 25px;
+    border: 1px solid rgba(212,175,55,0.4);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.08),
+        0 0 0 1px rgba(212,175,55,0.2);
+    transition: all 0.4s ease;
+}
+
+.about-big-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 35px 80px rgba(0,0,0,0.12),
+        0 0 0 1px rgba(212,175,55,0.4);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--dark-maroon);
+}
+
+.skill-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.custom-progress .progress-bar {
+    background-color: var(--burgundy);
+}
+
+.experience-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.experience-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.experience-list li:last-child {
+    border-bottom: none;
+}
+
+.experience-list li:hover {
+    padding-left: 8px;
+    color: var(--burgundy);
+}
+
+/* ================= Certificates ================= */
+
+.divider-title {
+    text-align: center;
+    margin: 60px 0 40px;
+    position: relative;
+}
+
+.divider-title span {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--dark-maroon);
+    padding: 0 20px;
+    background: #F3E3D3;
+    position: relative;
+    z-index: 2;
+}
+
+.divider-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--sand-gold);
+    z-index: 1;
+}
+
+.cert-card-new {
+    background-color: var(--burgundy);   
+    border: 2px solid var(--champagne);     
+    border-radius: 20px;
+    padding: 30px 35px;
+}
+
+.cert-title {
+    color: var(--champagne);  
+}
+
+.cert-short {
+    color: var(--champagne);   
+}
+
+
+/* ================= Journal ================= */
+
+.journal-section {
+    background-color: var(--champagne);
+}
+
+.journal-desc {
+    max-width: 600px;
+    margin: 0 auto 20px;
+    opacity: 0.85;
+}
+
+.journal-card {
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(74, 4, 4, 0.15);
+    transition: all 0.4s ease;
+}
+
+.journal-card:hover {
+    transform: translateY(-6px);
+}
+
+.journal-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+
+/* ================= Modal ================= */
+
+.custom-modal {
+    border-radius: 25px;
+    background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f7f2eb
+    );
+    padding: 25px;
+    box-shadow: 
+        0 40px 80px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(212,175,55,0.3);
+    animation: modalFadeIn 0.5s ease;
+}
+
+@keyframes modalFadeIn {
+    from {
+        transform: translateY(40px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-img {
+    width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+    margin-bottom: 25px;
+}
+
+.custom-close {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    background: rgba(122, 28, 46, 0.08);
+    border: none;
+    font-size: 22px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--dark-maroon);
+    transition: all 0.3s ease;
+}
+
+.custom-close:hover {
+    background: var(--burgundy);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.modal-dialog {
+    max-width: 800px;
+}
+
+.modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.modal-body h5 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--dark-maroon);
+    margin-bottom: 10px;
+}
+
+.modal-desc {
+    font-size: 15px;
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+
+/* ================= Footer ================= */
+
+.custom-footer {
+    background-color: var(--dark-maroon);
+    color: var(--champagne);
+    padding: 30px 0 20px;
+    margin-top: 60px;
+}
+
+.footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;   
+    margin-bottom: 15px;
+}
+
+.social-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;           
+    flex-wrap: wrap;
+    font-size: 15px;   
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--champagne);
+}
+
+.social-item i {
+    font-size: 18px;
+    color: var(--sand-gold);
+}
